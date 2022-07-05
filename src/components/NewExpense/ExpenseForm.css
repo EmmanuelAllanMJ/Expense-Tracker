@@ -1,0 +1,31 @@
+.new-expense__controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+}
+.new-expense__control input {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  color: #45260a;
+  border-radius: 6px;
+  box-shadow: 0 0.5px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #fff;
+  width: 100%;
+  color: #333;
+}
+.new-expense__control label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.new-expense__actions {
+  /* To make the btn move towards right */
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .new-expense__controls {
+    grid-template-columns: 1fr;
+  }
+}
