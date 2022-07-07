@@ -22,6 +22,9 @@
 .new-expense__actions {
   /* To make the btn move towards right */
   text-align: right;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
 }
 
 @media (max-width: 700px) {

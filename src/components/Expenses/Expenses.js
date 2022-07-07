@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpenseFilter from "./ExpenseFilter";
+import ExpensesList from "./ExpensesList";
 import "./Expenses.css";
 
 function Expenses(props) {
@@ -10,6 +11,23 @@ function Expenses(props) {
   function filterChangeHandler(seletedYear) {
     setFilterYear(seletedYear);
   }
+
+  const filterExpenses = props.expenses.filter((expense) => {
+    return filterYear.toString() === expense.date.getFullYear().toString();
+  });
+
+  // Clean approach
+  // let expensesContent = <p>No response</p>;
+  // if (filterExpenses.length > 0) {
+  //   expensesContent = filterExpenses.map((expense) => (
+  //     <ExpenseItem
+  //       key={expense.id}
+  //       title={expense.title}
+  //       amount={expense.amount}
+  //       date={expense.date}
+  //     />
+  //   ));
+
   return (
     <div>
       <Card className="expenses">
@@ -18,27 +36,41 @@ function Expenses(props) {
           selectedYear={filterYear}
           onChangeFilter={filterChangeHandler}
         />
+        <ExpensesList items={filterExpenses} />
+        {/* Writing using components */}
 
-        <ExpenseItem
-          title={props.expenses[0].title}
-          amount={props.expenses[0].amount}
-          date={props.expenses[0].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.expenses[1].title}
-          amount={props.expenses[1].amount}
-          date={props.expenses[1].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.expenses[2].title}
-          amount={props.expenses[2].amount}
-          date={props.expenses[2].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.expenses[3].title}
-          amount={props.expenses[3].amount}
-          date={props.expenses[3].date}
-        ></ExpenseItem>
+        {/* {expensesContent} */}
+        {/* Writing neat code */}
+
+        {/* But using this approach will be unefficient
+        as all the items are updated instead adding only the new item
+        and this can lead to bugs if we have states on these items
+        So we add key */}
+        {/* Other way to write if statement */}
+        {/* {filterExpenses.length === 0 && <p>No responses</p>}
+        {filterExpenses.length > 0 &&
+          filterExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))} */}
+
+        {/* This {} dont accept if else or for statements so we use ternary operator */}
+        {/* {filterExpenses.length === 0 ? (
+          <p>No responses</p>
+        ) : (
+          filterExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))
+        )} */}
       </Card>
     </div>
   );

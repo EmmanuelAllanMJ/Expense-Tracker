@@ -5,7 +5,10 @@ function ExpenseForm(props) {
   //we need thw initial value to be empty. Multiple state approach
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  //To get today's date
+  const [enteredDate, setEnteredDate] = useState(
+    new Date().toISOString().slice(0, 10)
+  );
 
   //one state approach
   //   const [userInput, setUserInput] = useState({
@@ -75,7 +78,7 @@ function ExpenseForm(props) {
     //This is called two-way binding
     setEnteredTitle("");
     setEnteredAmount("");
-    setEnteredDate("");
+    setEnteredDate(new Date().toISOString().slice(0, 10));
   };
 
   return (
@@ -104,7 +107,7 @@ function ExpenseForm(props) {
           <input
             type="date"
             min="2019-01-01"
-            max="2022-12-31"
+            max="2023-12-31"
             value={enteredDate}
             onChange={dateChangeHandler}
           />
@@ -112,6 +115,9 @@ function ExpenseForm(props) {
       </div>
       <div className="new-expense__actions">
         <button type="submit">Add Expense</button>
+        <button type="button " onClick={props.onCancel}>
+          Cancel
+        </button>
       </div>
     </form>
   );
