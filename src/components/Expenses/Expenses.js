@@ -33,11 +33,13 @@ function Expenses(props) {
     <div>
       <Card className="expenses">
         {/* This component controls the value of ExpenseFilter.js so ExpenseFilter.js is called controlled component */}
+        <div className="chart-grid">
+          <ExpenseChart expenses={filterExpenses} />
+        </div>
         <ExpenseFilter
           selectedYear={filterYear}
           onChangeFilter={filterChangeHandler}
         />
-        <ExpenseChart expenses={filterExpenses} />
         <ExpensesList items={filterExpenses} />
         {/* Writing using components */}
 
