@@ -21,4 +21,7 @@
   .expenses {
     display: block;
   }
+  .chart-grid {
+    margin-top:1rem;
+  }
 }
